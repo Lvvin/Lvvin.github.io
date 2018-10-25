@@ -331,7 +331,16 @@ centos7安装redis-知乎
 
 1[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v
 
-安装gcc123456yum install gccyum install gcc-c++有可能还要安装tcl(如果make test出现You need tcl 8.5 or newer in orde
+安装gcc123456yum install gccyum install gcc-c++有可能还要安装tcl(如果make test出现You need tcl 8.5 or newer in order to run the Redis test的话)yum install tcl
+
+
+3.如果之前操作过make并且报错，清理make
+1make clean
+
+运行make语句还是报错的话
+
+
+解
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -470,7 +479,10 @@ centos7安装redis-知乎
 打开Mysql官网下载地址,在页面中找到对应版本的下载地址(本例中为mysql57-community-release-el7-11.noarch.rpm) 
 
 
-自己玩所以就用的官网最新版本,不太确认是否因为版本问题造成后续的麻烦；建议
+自己玩所以就用的官网最新版本,不太确认是否因为版本问题造成后续的麻烦；建议将对应版本文件名及MD5值记录或者截屏
+
+
+wget下载该rpm包 按回车键确定下载1$ wget https://dev.mysql.com/get/mysql57-community-releas
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -597,7 +609,8 @@ centos7安装redis-知乎
         
           
           环境：Centos7.+版本  其他无
-检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &quot;1.7.0_&quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)OpenJDK 64-Bit Server VM (build 20.0-b12, mixed mod
+检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &quot;1.7.0_&quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)OpenJDK 64-Bit Server VM (build 20.0-b12, mixed mode)
+123456789如果是输出了先关信息，继续输入 进一步查看JDK信息：[root@localhost ~]#  rpm -qa | grep java正常情况会输出javapackages-t
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -735,7 +748,19 @@ Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前
 下载并安装Rabbit MQ Server Windows RabbitMQ
 
 
-百度知道-具体的安装
+百度知道-具体的安装步骤可以参考：
+
+二 配置
+安装后查看环境变量
+
+
+ 
+
+
+
+启动RabbitMQ
+
+1X:\rabbitmq_server-3.6.14\sbin 找到并运行rabbitmq-server.bat 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1118,6 +1143,10 @@ Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前
           
           Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
 Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More info: Server
+Generate static files1$ hexo generate
 M
           ...
           <!--noindex-->
@@ -1249,7 +1278,9 @@ M
 
 
 打开一个 cmd 窗口 使用cd命令切换目录到 C:\redis 运行1redis-server.exe redis.windows.conf
-如果想方便的话，可以把 re
+如果想方便的话，可以把 redis 的路径加到系统的环境变量里，这样就省得再输路径了，后面的那个 redis.windows.conf 可以省略，如果省略，会启用默认的。
+输入之后，会显示如下界面：
+1234这时候另启一个cmd
           ...
           <!--noindex-->
           <div class="post-button text-center">
