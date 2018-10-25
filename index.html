@@ -331,7 +331,7 @@ centos7安装redis-知乎
 
 1[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v
 
-安装
+安装gcc123456yum install gccyum install gcc-c++有可能还要安装tcl(如果make test出现You need tcl 8.5 or newer in orde
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -467,7 +467,10 @@ centos7安装redis-知乎
 1$  cd /tmp
 
 
-打开Mysql官网下载地址,在页面中找
+打开Mysql官网下载地址,在页面中找到对应版本的下载地址(本例中为mysql57-community-release-el7-11.noarch.rpm) 
+
+
+自己玩所以就用的官网最新版本,不太确认是否因为版本问题造成后续的麻烦；建议
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -594,7 +597,7 @@ centos7安装redis-知乎
         
           
           环境：Centos7.+版本  其他无
-检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &quot;1.7.0_&quot;OpenJDK Runtime Environmen
+检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &quot;1.7.0_&quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)OpenJDK 64-Bit Server VM (build 20.0-b12, mixed mod
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -724,7 +727,15 @@ centos7安装redis-知乎
 SpringBoot-RabbitMQ教程-Google
 
 一 下载安装文件
-Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前提是安装Erlang。通过下面两个连接可以下
+Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前提是安装Erlang。通过下面两个连接可以下载安装最新的版本：
+
+
+下载并安装 Eralng OTP For Windows Erlang
+
+下载并安装Rabbit MQ Server Windows RabbitMQ
+
+
+百度知道-具体的安装
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1105,7 +1116,9 @@ Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前
       
         
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+M
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1232,7 +1245,11 @@ Rabbit MQ 是建立在强大的Erlang OTP平台上，因此安装Rabbit MQ的前
         
           
           Redis 安装Window 下安装
-下载地址：https://github.com/MSOpenTech/redis/releases。Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择，这里我们下载 Redis-x64-xxx.zip压缩包到 C 盘，解压后，将文件夹重
+下载地址：https://github.com/MSOpenTech/redis/releases。Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择，这里我们下载 Redis-x64-xxx.zip压缩包到 C 盘，解压后，将文件夹重新命名为 redis。
+
+
+打开一个 cmd 窗口 使用cd命令切换目录到 C:\redis 运行1redis-server.exe redis.windows.conf
+如果想方便的话，可以把 re
           ...
           <!--noindex-->
           <div class="post-button text-center">
