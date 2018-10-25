@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Centos,Redis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Centos7 安装 Redis 下载Redis   资料1   centos7安装redis-知乎    安装前的准备工作 针对make安装错误的问题   检查服务器是否安装gcc，以及gcc版本是否过低  1[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v  安装gcc123456yum install gccyum install gcc-c++有可能还要安装">
+<meta name="keywords" content="Centos,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos7 安装 Redis">
+<meta property="og:url" content="http://yoursite.com/2018/10/25/Centos7-安装-Redis/index.html">
+<meta property="og:site_name" content="林大喵的小窝">
+<meta property="og:description" content="Centos7 安装 Redis 下载Redis   资料1   centos7安装redis-知乎    安装前的准备工作 针对make安装错误的问题   检查服务器是否安装gcc，以及gcc版本是否过低  1[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v  安装gcc123456yum install gccyum install gcc-c++有可能还要安装">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tgy1fj1pq1u9saj30mv0intav.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fjy02dy2tmj30q60jawfy.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1pc5f895j30k00f6ta8.jpg">
+<meta property="og:updated_time" content="2018-10-25T10:06:00.612Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos7 安装 Redis">
+<meta name="twitter:description" content="Centos7 安装 Redis 下载Redis   资料1   centos7安装redis-知乎    安装前的准备工作 针对make安装错误的问题   检查服务器是否安装gcc，以及gcc版本是否过低  1[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v  安装gcc123456yum install gccyum install gcc-c++有可能还要安装">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/0060lm7Tgy1fj1pq1u9saj30mv0intav.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/25/Centos7-安装-Redis/"/>
+
+
+
+
+
+  <title>Centos7 安装 Redis | 林大喵的小窝</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林大喵的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/Centos7-安装-Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林大喵的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Centos7 安装 Redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T18:04:55+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Centos7-安装-Redis"><a href="#Centos7-安装-Redis" class="headerlink" title="Centos7 安装 Redis"></a>Centos7 安装 Redis</h1><blockquote>
+<p><a href="https://redis.io/download" target="_blank" rel="noopener">下载Redis</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://blog.csdn.net/kenkao/article/details/53419773" target="_blank" rel="noopener">资料1</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/34527270" target="_blank" rel="noopener">centos7安装redis-知乎</a></p>
+</blockquote>
+<p><img src="http://ww3.sinaimg.cn/large/0060lm7Tgy1fj1pq1u9saj30mv0intav.jpg" alt="image"></p>
+<blockquote>
+<p>安装前的准备工作 <a href="Redis安装异常解决办法">针对make安装错误的问题</a></p>
+</blockquote>
+<ol>
+<li>检查服务器是否安装gcc，以及gcc版本是否过低</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@jdu4e00u53f7 redis-4.0.1]#  gcc -v</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装gcc<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc</span><br><span class="line">yum install gcc-c++</span><br><span class="line"></span><br><span class="line">有可能还要安装tcl(如果make test出现You need tcl 8.5 or newer in order to run the Redis test的话)</span><br><span class="line"></span><br><span class="line">yum install tcl</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.如果之前操作过make并且报错，清理make</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make clean</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>运行make语句还是报错的话<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fjy02dy2tmj30q60jawfy.jpg" alt="image"></li>
+</ol>
+<blockquote>
+<h4 id="解压缩Redis以及初步安装"><a href="#解压缩Redis以及初步安装" class="headerlink" title="解压缩Redis以及初步安装"></a>解压缩Redis以及初步安装</h4><p>备注：此时redis压缩包在root目录下</p>
+<ol>
+<li>tar -zxvf redis-3.2.9.tar.gz</li>
+<li>cd redis-3.2.9</li>
+<li>make</li>
+<li>make install</li>
+</ol>
+</blockquote>
+<blockquote>
+<h4 id="安装Redis服务-并且设置外网能够访问-参考资料"><a href="#安装Redis服务-并且设置外网能够访问-参考资料" class="headerlink" title="安装Redis服务 并且设置外网能够访问 参考资料"></a>安装Redis服务 并且设置外网能够访问 <a href="http://blog.csdn.net/envon123/article/details/76684059" target="_blank" rel="noopener">参考资料</a></h4><p><img src="http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1pc5f895j30k00f6ta8.jpg" alt="image"></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意：上面看到6379端口绑定了127.0.0.1地址，可以在 /etc/redis/6379.conf 文件中修改为 0.0.0.0 来允许外部访问！</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="启动Redis"><a href="#启动Redis" class="headerlink" title="启动Redis"></a>启动Redis</h4><ul>
+<li>直接在redis安装目录下启动</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@jdu4e00u53f7 redis-4.0.1]# redis-server </span><br><span class="line"></span><br><span class="line">13979:C 30 Aug 13:54:35.211 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span><br><span class="line">13979:C 30 Aug 13:54:35.211 # Redis version=4.0.1, bits=64, commit=00000000, modified=0, pid=13979, just started</span><br><span class="line">13979:C 30 Aug 13:54:35.211 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span><br><span class="line">13979:M 30 Aug 13:54:35.212 * Increased maximum number of open files to 10032 (it was originally set to 1024).</span><br><span class="line">                _._                                                  </span><br><span class="line">           _.-``__ &apos;&apos;-._                                             </span><br><span class="line">      _.-``    `.  `_.  &apos;&apos;-._           Redis 4.0.1 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ &apos;&apos;-._                                   </span><br><span class="line"> (    &apos;      ,       .-`  | `,    )     Running in standalone mode</span><br><span class="line"> |`-._`-...-` __...-.``-._|&apos;` _.-&apos;|     Port: 6379</span><br><span class="line"> |    `-._   `._    /     _.-&apos;    |     PID: 13979</span><br><span class="line">  `-._    `-._  `-./  _.-&apos;    _.-&apos;                                   </span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  </span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |           http://redis.io        </span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   </span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  </span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |                                  </span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   </span><br><span class="line">      `-._    `-.__.-&apos;    _.-&apos;                                       </span><br><span class="line">          `-._        _.-&apos;                                           </span><br><span class="line">              `-.__.-&apos;                                               </span><br><span class="line"></span><br><span class="line">13979:M 30 Aug 13:54:35.214 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span><br><span class="line">13979:M 30 Aug 13:54:35.214 # Server initialized</span><br><span class="line">13979:M 30 Aug 13:54:35.214 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &apos;vm.overcommit_memory = 1&apos; to /etc/sysctl.conf and then reboot or run the command &apos;sysctl vm.overcommit_memory=1&apos; for this to take effect.</span><br><span class="line">13979:M 30 Aug 13:54:35.214 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &apos;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&apos; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>官网：您可以使用内置客户端与Redis交互 (其实就是打开另一个窗口，然后访问)</p>
+<p>$ src/redis-cli<br>redis&gt; set foo bar<br>OK<br>redis&gt; get foo<br>“bar”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; #### Redis服务 启动/停止 以及开机服务配置</span><br><span class="line">刚才安装的时候，可看到在 /etc/init.d 下放了 redis_6379 这个文件</span><br><span class="line"></span><br><span class="line">![image](http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1puldl0rj30f103pjre.jpg)</span><br><span class="line">![image](http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1pxckkb6j30er01a0sl.jpg)</span><br><span class="line"></span><br><span class="line">那么，服务名是 redis_6379，所以相关的启动/停止等命令如下：</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>#开机不启动<br>chkconfig redis_6379 off</li>
+<li>#开机启动<br>chkconfig redis_6379 on</li>
+<li>#停止<br>service redis_6379 stop</li>
+<li>#启动<br>service redis_6379 start<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 测试连接</span><br><span class="line">直接启动服务 。然后直接运行</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>[root@localhost bin]# redis-cli<br>或者<br>[root@localhost bin]# redis-cli -a 密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; 其他一些问题 </span><br><span class="line">- 如果在启动服务时更改配置文件密码，需停止服务后重载但是会报错 [参考资料](http://blog.csdn.net/mingjie1212)</span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost bin]# service redis stop<br>Stopping …<br>(error) NOAUTH Authentication required.</p>
+<p>Waiting for Redis to shutdown …<br>Waiting for Redis to shutdown …<br>Waiting for Redis to shutdown …<br>Waiting for Redis to shutdown …<br>Waiting for Redis to shutdown …</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> 这样的错误，而且redis 这时是没有停止服务的。</span><br><span class="line">当然可以使用ps -ef  查进程号 然后kill 掉，如果在deamon下 这样还要去删除pid文件，有点繁琐。</span><br><span class="line"></span><br><span class="line">解决办法：</span><br><span class="line">用redis-cli 密码登陆  然后shutdown  然后exit 就OK了。</span><br></pre></td></tr></table></figure>
+<p>[root@localhost bin]# redis-cli -a 123456<br>127.0.0.1:6379&gt; SHUTDOWN<br>not connected&gt; exit<br><code>`</code><br>再用ps -ef 可以看到redis进程已经退出。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Centos/" rel="tag"># Centos</a>
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/25/Centos7-安装-MySQL/" rel="next" title="Centos7 安装 MySQL">
+                <i class="fa fa-chevron-left"></i> Centos7 安装 MySQL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LIN</p>
+              <p class="site-description motion-element" itemprop="description">个人随笔、记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Centos7-安装-Redis"><span class="nav-number">1.</span> <span class="nav-text">Centos7 安装 Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解压缩Redis以及初步安装"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">解压缩Redis以及初步安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Redis服务-并且设置外网能够访问-参考资料"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">安装Redis服务 并且设置外网能够访问 参考资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Redis"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">启动Redis</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LIN</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

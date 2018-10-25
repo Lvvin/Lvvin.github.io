@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Centos,Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="环境：Centos7.+版本  其他无 检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &amp;quot;1.7.0_&amp;quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)O">
+<meta name="keywords" content="Centos,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos7 安装 Java">
+<meta property="og:url" content="http://yoursite.com/2018/10/25/Centos7-安装-JAVA/index.html">
+<meta property="og:site_name" content="林大喵的小窝">
+<meta property="og:description" content="环境：Centos7.+版本  其他无 检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &amp;quot;1.7.0_&amp;quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)O">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1mcz56q8j30fh06bgln.jpg">
+<meta property="og:updated_time" content="2018-10-25T10:05:24.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos7 安装 Java">
+<meta name="twitter:description" content="环境：Centos7.+版本  其他无 检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java1234567[root@zck ~]# java -version正常情况会输出java version &amp;quot;1.7.0_&amp;quot;OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)O">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1mcz56q8j30fh06bgln.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/25/Centos7-安装-JAVA/"/>
+
+
+
+
+
+  <title>Centos7 安装 Java | 林大喵的小窝</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林大喵的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/Centos7-安装-JAVA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林大喵的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Centos7 安装 Java</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T17:29:17+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境：Centos7.+版本  其他无</p>
+<h4 id="检验系统原版本-，申请的服务器可以先查看系统是由自带的有java"><a href="#检验系统原版本-，申请的服务器可以先查看系统是由自带的有java" class="headerlink" title="检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java"></a>检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@zck ~]# java -version</span><br><span class="line"></span><br><span class="line">正常情况会输出</span><br><span class="line"></span><br><span class="line">java version &quot;1.7.0_&quot;</span><br><span class="line">OpenJDK Runtime Environment (IcedTea6 1.11.1) (rhel-1.45.1.11.1.el6-x86_64)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 20.0-b12, mixed mode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">如果是输出了先关信息，继续输入 进一步查看JDK信息：</span><br><span class="line">[root@localhost ~]#  rpm -qa | grep java</span><br><span class="line"></span><br><span class="line">正常情况会输出</span><br><span class="line">javapackages-tools-3.4.1-6.el7_0.noarch</span><br><span class="line">tzdata-java-2014i-1.el7.noarch</span><br><span class="line">java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line">java-1.7.0-openjdk-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line">python-javapackages-3.4.1-6.el7_0.noarch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">卸载OpenJDK，执行以下操作：</span><br><span class="line">[root@localhost ~]# rpm -e --nodeps tzdata-java-2014i-1.el7.noarch</span><br><span class="line">[root@localhost ~]# rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line">[root@localhost ~]# rpm -e --nodeps java-1.7.0-openjdk-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<h3 id="PS：主菜上来了-安装JDK"><a href="#PS：主菜上来了-安装JDK" class="headerlink" title="PS：主菜上来了~  安装JDK"></a>PS：主菜上来了~  安装JDK</h3></blockquote>
+<blockquote>
+<p>#手动安装JDK 上传到Linux服务器</p>
+</blockquote>
+<ul>
+<li>上传jdk到Linxu文件夹下，至于怎么上传随你，最终就是文件夹里有着压缩包</li>
+<li>我用的xhsell自带的ftp上传的，是预先在本地下载好的.rmp格式的，你也可以使用命令行copy到服务器文件夹上、或者使用wget命令、或者yum命令 这次不做详细介绍</li>
+<li>压缩包有两种格式，我用的.rmp安装包 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">上传新的jdk-8u25-linux-x64.rpm软件到/usr/local/执行以下操作： </span><br><span class="line">备注：此时路径是在该压缩包存放路径下</span><br><span class="line">[root@lin local]# rpm -ivh jdk文件名.rpm</span><br></pre></td></tr></table></figure>
+<p>如图所示</p>
+<p><img src="http://ww4.sinaimg.cn/large/0060lm7Tgy1fj1mcz56q8j30fh06bgln.jpg" alt="image"></p>
+<blockquote>
+<p>JDK默认安装在/usr/java中    </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">执行以下操作，查看信息是否正常：</span><br><span class="line">[root@localhost ~]# java</span><br><span class="line">[root@localhost ~]# javac</span><br><span class="line">[root@localhost ~]# java -version</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置环境变量<br>参考的网上资料我也不晓得为啥要配置…别人都配置了?好吧 我也配置下吧，应对以后某些软件可能会根据配置查找jdk</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">直接用 vi 命令 编辑系统配置文件 也就是root用户下的</span><br><span class="line">[root@localhost ~]# vi /etc/profile</span><br><span class="line">打开后直接在文本最后写入(根据自己jdk文件夹名字)</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_25</span><br><span class="line">JRE_HOME=/usr/java/jdk1.8.0_25/jre</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里涉及到一个vi命令编辑后退出的操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vi有3种基本工作模式：命令行模式、文本输入模式和末行模式</span><br><span class="line"></span><br><span class="line">vi 的进入与退出，shell模式下输入需要编辑的文件名，如：vimfile1.php即可编辑文件。</span><br><span class="line"></span><br><span class="line">退出 vi 时，需要在末行模式中输入退出命令“q”。</span><br><span class="line">如果在文本输入模式下，首先按“ESC” 键进入命令模式，然后输入“:” </span><br><span class="line"></span><br><span class="line">进入末行模式在末行模式下，可使用如下退出命令。</span><br><span class="line">退出时：1、:q 是直接退出；2、wq 保存后退出；3、:q! – 不保存内容， 强制退出</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 使修改生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@localhost ~]# source /etc/profile   //使修改立即生效</span><br><span class="line">[root@localhost ~]#        echo $PATH   //查看PATH值</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>查看系统环境状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo $PATH</span><br><span class="line">/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/usr/java/jdk1.8.0_25/bin:/usr/java/jdk1.8.0_25/jre/bin</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<blockquote>
+<h3 id="还有一种方式就是YUM安装"><a href="#还有一种方式就是YUM安装" class="headerlink" title="还有一种方式就是YUM安装"></a>还有一种方式就是YUM安装</h3></blockquote>
+<h4 id="查看CentOS自带JDK是否已安装。"><a href="#查看CentOS自带JDK是否已安装。" class="headerlink" title="查看CentOS自带JDK是否已安装。"></a>查看CentOS自带JDK是否已安装。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- yum list installed |grep java。</span><br><span class="line"></span><br><span class="line">若有自带安装的JDK，如何卸载CentOS系统自带Java环境？</span><br><span class="line">卸载JDK相关文件输入：</span><br><span class="line">yum -y remove java-1.7.0-openjdk*</span><br><span class="line">卸载tzdata-java输入：</span><br><span class="line">yum -y remove tzdata-java.noarch</span><br><span class="line">当结果显示为Complete！即卸载完毕。</span><br><span class="line">注：“*”表示卸载掉java 1.7.0的所有openjdk相关文件</span><br></pre></td></tr></table></figure>
+<h3 id="YUM安装-JDK-资料"><a href="#YUM安装-JDK-资料" class="headerlink" title="YUM安装 JDK   资料"></a>YUM安装 JDK   <a href="https://www.jb51.net/article/126921.htm/" target="_blank" rel="noopener">资料</a></h3><p>1 JDK 是开发Java程序必须安装的软件，我们查看一下 ==yum== 源里面的 JDK：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">yum list java*</span><br><span class="line"></span><br><span class="line">Available Packages</span><br><span class="line"></span><br><span class="line">java-1.7.0-openjdk.x86_64</span><br><span class="line">java-1.7.0-openjdk-demo.x86_64</span><br><span class="line">java-1.7.0-openjdk-devel.x86_64</span><br><span class="line">java-1.7.0-openjdk-javadoc.noarch</span><br><span class="line">java-1.7.0-openjdk-src.x86_64</span><br><span class="line">java-1.8.0-openjdk.x86_64</span><br><span class="line">java-1.8.0-openjdk-debug.x86_64</span><br><span class="line">java-1.8.0-openjdk-demo.x86_64</span><br><span class="line">java-1.8.0-openjdk-demo-debug.x86_64</span><br><span class="line">java-1.8.0-openjdk-devel.x86_64</span><br><span class="line">java-1.8.0-openjdk-devel-debug.x86_64</span><br><span class="line">java-1.8.0-openjdk-headless.x86_64</span><br><span class="line">java-1.8.0-openjdk-headless-debug.x86_64</span><br><span class="line">java-1.8.0-openjdk-javadoc.noarch</span><br><span class="line">java-1.8.0-openjdk-javadoc-debug.noarch</span><br><span class="line">java-1.8.0-openjdk-src.x86_64</span><br><span class="line">java-1.8.0-openjdk-src-debug.x86_64</span><br></pre></td></tr></table></figure>
+<p>2 选择适合本机的JDK，并安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk* -y</span><br></pre></td></tr></table></figure>
+<p>3 安装完成后，查看是否安装成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h3 id="查找-JDK1-8-的-JAVA-HOME"><a href="#查找-JDK1-8-的-JAVA-HOME" class="headerlink" title="查找 JDK1.8 的 JAVA_HOME"></a>查找 JDK1.8 的 JAVA_HOME</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">#查找 javac ：</span><br><span class="line">$ whereis javac</span><br><span class="line">$ javac: /usr/bin/javac /usr/share/man/man1/javac.1.gz</span><br><span class="line"></span><br><span class="line">#可以看到, /usr/bin/javac, 一般来说 /usr/bin 默认加入了 PATH 路径,所以可以直接执行.</span><br><span class="line"></span><br><span class="line">#然后一路跟踪,看软连接指向的位置( ll 是 ls -l 的快捷命令):</span><br><span class="line"></span><br><span class="line">$ ll /usr/bin/javac</span><br><span class="line">$ … /usr/bin/javac -&gt; /etc/alternatives/javac</span><br><span class="line"></span><br><span class="line">#然后继续:</span><br><span class="line"></span><br><span class="line">$ ll /etc/alternatives/javac</span><br><span class="line"></span><br><span class="line">#JDK1.8 大致是这个样子:</span><br><span class="line"></span><br><span class="line">$ … /etc/alternatives/javac -&gt;/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-1.b14.el7_2.x86_64/bin/javac</span><br><span class="line"></span><br><span class="line">#再继续:</span><br><span class="line">$ ll /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-1.b14.el7_2.x86_64/bin/javac</span><br><span class="line"></span><br><span class="line">#不再是软连接。 结合这个地址可以分析得到, JAVA_HOME 的值应该是</span><br><span class="line">$ /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-1.b14.el7_2.x86_64。</span><br><span class="line"></span><br><span class="line">#使用这个地址就可以了!</span><br><span class="line"></span><br><span class="line">#如果继续下一步查看:</span><br><span class="line"></span><br><span class="line">$ ll /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-1.b14.el7_2.x86_64</span><br><span class="line"></span><br><span class="line">$具体内容类似下面这样:</span><br><span class="line"></span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Sep 21 23:08 bin</span><br><span class="line">drwxr-xr-x. 3 root root 4096 Sep 21 23:08 include</span><br><span class="line">drwxr-xr-x. 4 root root 26 Sep 21 23:08 jre</span><br><span class="line">drwxr-xr-x. 3 root root 4096 Sep 21 23:08 lib</span><br><span class="line">drwxr-xr-x. 2 root root 4096 Sep 21 23:08 tapset</span><br><span class="line"></span><br><span class="line">#查看软连接:</span><br><span class="line"></span><br><span class="line">#查看 jvm 目录:</span><br><span class="line"></span><br><span class="line">$ ll /usr/lib/jvm</span><br><span class="line"></span><br><span class="line">#则可以看到很多软连接:</span><br><span class="line"></span><br><span class="line">java -&gt; /etc/alternatives/java_sdk</span><br><span class="line">java-1.8.0 -&gt; /etc/alternatives/java_sdk_1.8.0</span><br><span class="line">java-1.8.0-openjdk -&gt; /etc/alternatives/java_sdk_1.8.0_openjdk</span><br><span class="line">java-1.8.0-openjdk-1.8.0.111-1.b15.el7_2.x86_64</span><br><span class="line">java-1.8.0-openjdk-1.8.0.111-1.b15.el7_2.x86_64-debug</span><br><span class="line">java-openjdk -&gt; /etc/alternatives/java_sdk_openjdk</span><br><span class="line">jre -&gt; /etc/alternatives/jre</span><br><span class="line">jre-1.8.0 -&gt; /etc/alternatives/jre_1.8.0</span><br><span class="line">#类似这样的,不管 jre 开头的部分,可以看到 /etc/alternatives/java_sdk_1.8.0 这样的目录;</span><br><span class="line"></span><br><span class="line">#执行 :</span><br><span class="line"></span><br><span class="line">$ ll /etc/alternatives/java_sdk_1.8.0</span><br><span class="line">$ ll /etc/alternatives/java_sdk</span><br><span class="line">#然后发现, 这一堆链接都是指向上面的 JAVA_HOME 路径：</span><br><span class="line"></span><br><span class="line">$ /etc/alternatives/java_sdk_1.8.0 -&gt;/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b15.el7_2.x86_64</span><br><span class="line">#所以,可以使用其中之一作为 JAVA_HOME 环境变量的值。</span><br><span class="line"></span><br><span class="line">#说明: 既然安装了,基本上服务器上就不会频繁变更. #如果有变更,则查找并修正即可。</span><br><span class="line"></span><br><span class="line">#3.3 将 JAVA_HOME 加入环境变量:</span><br><span class="line"></span><br><span class="line">$ export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0</span><br><span class="line"></span><br><span class="line">#当然, export 只是临时的。下次重启后就没了。</span><br><span class="line"></span><br><span class="line">#可以添加到rc文件,比如 /etc/rc.d/rc.local 之中。</span><br><span class="line"></span><br><span class="line">#当然,可以使用 vim 编辑, 或者是 echo &gt;&gt; 命令</span><br><span class="line">jhometip=&apos;# add JAVA_HOME&apos;</span><br><span class="line">jhomescript=&apos;export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0&apos;</span><br><span class="line"></span><br><span class="line">$ sudo echo $jhometip &gt;&gt; /etc/rc.d/rc.local</span><br><span class="line">$ sudo echo $jhomescript &gt;&gt; /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Centos/" rel="tag"># Centos</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/07/安装RabbitMQ-Windows/" rel="next" title="Windows下安装RabbitMQ">
+                <i class="fa fa-chevron-left"></i> Windows下安装RabbitMQ
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/25/Centos7-安装-MySQL/" rel="prev" title="Centos7 安装 MySQL">
+                Centos7 安装 MySQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LIN</p>
+              <p class="site-description motion-element" itemprop="description">个人随笔、记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#检验系统原版本-，申请的服务器可以先查看系统是由自带的有java"><span class="nav-number">1.</span> <span class="nav-text">检验系统原版本 ，申请的服务器可以先查看系统是由自带的有java</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：主菜上来了-安装JDK"><span class="nav-number"></span> <span class="nav-text">PS：主菜上来了~  安装JDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还有一种方式就是YUM安装"><span class="nav-number"></span> <span class="nav-text">还有一种方式就是YUM安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看CentOS自带JDK是否已安装。"><span class="nav-number">1.</span> <span class="nav-text">查看CentOS自带JDK是否已安装。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YUM安装-JDK-资料"><span class="nav-number"></span> <span class="nav-text">YUM安装 JDK   资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找-JDK1-8-的-JAVA-HOME"><span class="nav-number"></span> <span class="nav-text">查找 JDK1.8 的 JAVA_HOME</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LIN</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
